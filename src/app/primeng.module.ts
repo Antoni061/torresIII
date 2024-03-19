@@ -7,6 +7,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { PasswordModule } from 'primeng/password';
 import { ToastModule } from 'primeng/toast';
 import { DialogModule } from 'primeng/dialog';
+import { CalendarModule } from 'primeng/calendar';
 
 
 const modPrimeNg:any=[
@@ -16,7 +17,8 @@ const modPrimeNg:any=[
   MenubarModule,
   PasswordModule,
   ToastModule,
-  DialogModule
+  DialogModule,
+  CalendarModule
 ];
 
 @NgModule({

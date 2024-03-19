@@ -1,0 +1,111 @@
+<section class="hero" id="hero">
+    <div class="container">
+        <h2 class="h2-sub">
+            <span class="fil">B</span>ienvenido
+        </h2>
+        <h1 class="head">Sitio de Eventos</h1>
+        <div class="he-des">
+            <h5>¡Te presentamos los Mejores Eventos!</h5>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section>
+    <div class="container">
+        <div class="res-info">
+
+            <div class="image-group">
+                <img src="/assets/mujer-negocios.jpg" alt="">
+                <img src="/assets/educacion-economia_2.jpg" alt="">
+            </div>
+            <div class="res-des pad-rig">
+                <div class="global">
+                    <h2 class="h2-sub">
+                        <span class="fil">E</span>ventos
+                    </h2>
+                    <h1 class="head hea-dark">Nuestros Eventos</h1>
+                    <div class="circle">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                </div>
+                <a href="/totalEventos" class="btn cta-btn" style="margin-right: 10px;">Ver Eventos</a>
+                <a href="/listEventos" class="btn cta-btn">Registrar Evento</a>
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+
+            <div class="footer-content-about">
+                <h4>Nosotros</h4>
+                <div class="circle">
+                    <i class="fas fa-circle"></i>
+                </div>
+                <p>Nosotros somos "Eventos Espectaculares", una empresa dedicada a la planificación y organización de eventos memorables. Con un equipo apasionado y creativo, nos esforzamos por convertir cada ocasión en una experiencia inolvidable para nuestros clientes y sus invitados.
+
+                    Nuestra misión es superar las expectativas de nuestros clientes, brindando un servicio excepcional desde la conceptualización hasta la ejecución del evento. Nos enorgullecemos de nuestra atención al detalle, nuestra capacidad para adaptarnos a las necesidades específicas de cada cliente y nuestra habilidad para transformar ideas en realidades impresionantes.</p>
+            </div>
+            <div class="footer-div">
+                <div class="social-media">
+                    <h4>Siguenos</h4>
+                    <ul class="social-icons">
+                        <li>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-facebook-square"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-pinterest"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-tripadvisor"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Noticias</h4>
+                    <form action="" class="news-form">
+                        <input type="text" class="news-input"
+                        placeholder="Escribe tu email"
+                        >
+                        <button class="news-btn" type="submit">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
+<script>
+
+    const selectElement = function(element) {
+        return document.querySelector(element);
+    }
+
+
+    let menuToggle = selectElement('.menu-toggle');
+    let body = selectElement('body');
+
+    menuToggle.addEventListener('click', function(){
+        body.classList.toggle('open');
+    })
+
+</script>
+

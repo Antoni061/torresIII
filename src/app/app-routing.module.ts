@@ -3,10 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { ParticipantesComponent } from './components/participantes/participantes.component';
 import { EventosListComponent } from './components/eventos-list/eventos-list.component';
 import { TotalEventosComponent } from './components/total-eventos/total-eventos.component';
+import { CalComponent } from './components/cal/cal.component';
+import { IniComponent } from './components/inicio/ini.component';
 
 const routes: Routes = [
   {
-    path:'',
+    path:'participantes',
     component:ParticipantesComponent
     
   },
@@ -19,6 +21,14 @@ const routes: Routes = [
     path:'totalEventos',
     component:TotalEventosComponent
     
+  },
+  {
+    path:'calEventos',
+    component:CalComponent
+  },
+  {
+    path:'',
+    component:IniComponent
   }
 ];
 
