@@ -3,11 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { ParticipantesComponent } from './components/participantes/participantes.component';
 import { EventosListComponent } from './components/eventos-list/eventos-list.component';
 import { TotalEventosComponent } from './components/total-eventos/total-eventos.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
 
 const routes: Routes = [
   {
     path:'',
-    component:ParticipantesComponent
+    component:TotalEventosComponent
     
   },
   {
@@ -19,6 +20,14 @@ const routes: Routes = [
     path:'totalEventos',
     component:TotalEventosComponent
     
+  },
+  {
+    path:'participantes/:nombreEvento',
+    component:ParticipantesComponent
+  },
+  {
+    path:'calendario',
+    component:CalendarioComponent
   }
 ];
 

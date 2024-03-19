@@ -12,6 +12,9 @@ import { MessageService } from 'primeng/api';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { EventosListComponent } from './components/eventos-list/eventos-list.component';
 import { TotalEventosComponent } from './components/total-eventos/total-eventos.component';
+import { FechaEspPipe } from './pipes/fecha-esp.pipe';
+import { FormsModule } from '@angular/forms';
+import { CalendarioComponent } from './components/calendario/calendario.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { TotalEventosComponent } from './components/total-eventos/total-eventos.
     ParticipantesComponent,
     NavBarComponent,
     EventosListComponent,
-    TotalEventosComponent
+    TotalEventosComponent,
+    FechaEspPipe,
+    CalendarioComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,8 @@ import { TotalEventosComponent } from './components/total-eventos/total-eventos.
     PrimengModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     MessageService,

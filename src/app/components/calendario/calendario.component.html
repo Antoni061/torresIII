@@ -1,0 +1,44 @@
+<div class="calendario">
+    <div class="wrapper-calendar">
+        <div class="header-calendar">
+          <div>
+            <p-button (click)="changeMonth(-1)" class="btn-prev">
+              <i class="fa-solid fa-caret-left fa-2xl" style="color: #021f30;"></i>
+            </p-button>
+          </div>
+          <h1 id="MesActual">{{ dateSelect | fechaEsp: false }}</h1>
+          <div>
+            <p-button (click)="changeMonth(1)" class="btn-next" >
+              <i class="fa-solid fa-caret-right fa-2xl" style="color: #00141f;"></i>
+            </p-button>
+          </div>
+        </div>
+        <ol>
+          <li *ngFor="let day of week" class="day-name">{{ day | slice : 0 : 3 }}</li>
+      
+          <li
+            class="number"
+            (click)="clickDay(day)"
+            [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+            [class.event-day]="hasEvent(day)"
+            [class.hoy]="hoy(day)"
+            *ngFor="let day of monthSelect; let first = first"
+          >
+            <span>{{ day?.value }}</span>
+          </li>
+        </ol>
+      </div>
+      <p-card class="event-info" *ngIf="eventInfoVisible" >
+        <h3>{{ selectedEvent?.nomAct }}</h3>
+        <p>Encargado: {{selectedEvent?.usr}}</p>
+        <p>{{ selectedEvent?.descripcion }}</p>
+        <p>{{ selectedEvent?.nomLug }}</p>
+
+        <div #mapContainer style="width: 100%; height: 400px;">
+        </div>
+        <p-button (click)="cerrarInfoEvent()">Cerrar</p-button>
+      </p-card>
+    </div>
+    
+      <hr />
+      <div>Fecha: {{ dateValue | fechaEsp }}</div>

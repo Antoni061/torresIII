@@ -3,12 +3,17 @@ table{
     -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 th{
-    background: gray;
+   background: #373f51; 
+   color: white
 }
 td{
     width: max-content;
+    background-color: transparent;
 }
 
-td:hover{
+tr{
+    background-color: rgb(252, 252, 252);
+}
+tr:hover{
     background: rgba(168, 168, 168, 0.589);
 }

@@ -1,96 +1,130 @@
 <body>
-    <table class="table table-striped table-hover">
-        <thead class="thead-dark">
-            <tr>
-                <th style="background:#373f51; color: white;">Nombre del Evento</th>
-                <th style="background:#373f51; color: white;">Cupo Máximo</th>
-                <th style="background:#373f51; color: white;">Fecha</th>
-                <th style="background:#373f51; color: white;">Ciudad</th>
-                <th style="background:#373f51; color: white;">Área</th>
-                <th style="background:#373f51; color: white;">Acción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Aquí puedes agregar filas para cada evento -->
-            <tr>
-                <td>Evento 1</td>
-                <td>50</td>
-                <td>2024-03-13</td>
-                <td>Ciudad 1</td> <!-- Ciudad traída de la base de datos -->
-                <td>Área 1</td> <!-- Área traída de la base de datos -->
-                <td>
-                    <p-button (click)="showDialog()" icon="pi pi-user" label="Inscribirme a un evento"></p-button>
-<p-dialog header="Header" [(visible)]="visible" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
-</p-dialog>
-
-                    
-                </td>
-            </tr>
-            <tr>
-                <td>Evento 2</td>
-                <td>30</td>
-                <td>2024-04-20</td>
-                <td>Ciudad 2</td> <!-- Ciudad traída de la base de datos -->
-                <td>Área 2</td> <!-- Área traída de la base de datos -->
-                <td>
-                    <p-button (click)="showDialog()" icon="pi pi-user" label="Inscribirme a un evento"></p-button>
-<p-dialog header="Evento" [(visible)]="visible" [breakpoints]="{ '960px': '75vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
-    <form>
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
-        </div>
-        <div class="form-group">
-            <label for="apellidoPaterno">Apellido Paterno</label>
-            <input type="text" class="form-control" id="apellidoPaterno" placeholder="Ingrese su apellido paterno">
-        </div>
-        <div class="form-group">
-            <label for="apellidoMaterno">Apellido Materno</label>
-            <input type="text" class="form-control" id="apellidoMaterno" placeholder="Ingrese su apellido materno">
-        </div>
-        <div class="form-group">
-            <label for="edad">Edad</label>
-            <input type="number" class="form-control" id="edad" placeholder="Ingrese su edad">
-        </div>
-        <div class="form-group">
-            <label for="genero">Género</label>
-            <select class="form-control" id="genero">
-                <option value="">Selecciona tu género</option>
-                <option value="masculino">Masculino</option>
-                <option value="femenino">Femenino</option>
-                <option value="otro">Otro</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="correo">Correo</label>
-            <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo electrónico">
-        </div>
-        <div class="form-group">
-            <label for="telefono">Teléfono</label>
-            <input type="tel" class="form-control" id="telefono" placeholder="Ingrese su número de teléfono">
-        </div>
-        <div class="form-group">
-            <label for="cargo">Cargo</label>
-            <select class="form-control" id="cargo">
-                <option value="">Selecciona tu cargo</option>
-                <option value="Gerente">Gerente</option>
-                <option value="Supervisor">Supervisor</option>
-                <option value="Analista">Analista</option>
-                <option value="Asistente">Asistente</option>
-            </select>
-        </div>
-        <div class="form-group mb-4 text-center" style="padding: 15px 0; border-radius: 10px;"> <!-- Añadí la clase "mb-4" para agregar un espacio adicional -->
-            <button type="submit" class="btn btn-primary btn-block">Registrar Evento</button>
-        </div>
-    </form>
-    
-</p-dialog>
-
-
-
-                </td>
-            </tr>
-            <!-- Puedes agregar más filas según sea necesario -->
-        </tbody>
-    </table>
+  <table class="table table-striped" style="border-radius: 10px; overflow: hidden; background: #373f51; color: white">
+    <thead>
+      <tr>
+        <th>Nombre del Evento</th>
+        <th>Cupo Máximo</th>
+        <th>Fecha</th>
+        <th>Ciudad</th>
+        <th>Área</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Aquí puedes agregar filas para cada evento -->
+      <tr *ngFor="let item of eventosService.eventos">
+        <td (click)="goToPart(item.nombreEvento)">{{ item.nombreEvento }}</td>
+        <td (click)="goToPart(item.nombreEvento)">{{ item.cupoMaximo }}</td>
+        <td (click)="goToPart(item.nombreEvento)">{{ item.fecha | fechaEsp}}</td>
+        <td (click)="goToPart(item.nombreEvento)">{{ item.nomCiudad }}</td>
+        <!-- Ciudad traída de la base de datos -->
+        <td (click)="goToPart(item.nombreEvento)">{{ item.nomArea }}</td>
+        <!-- Área traída de la base de datos -->
+        <td>
+          <p-button
+            (click)="showDialog(item.nombreEvento);"
+            icon="pi pi-user"
+            label="Inscribirme a un evento"
+          ></p-button>
+        </td>
+      </tr>
+      <!-- Puedes agregar más filas según sea necesario -->
+    </tbody>
+    <p-dialog
+            header="Evento"
+            [(visible)]="visible"
+            [breakpoints]="{ '960px': '75vw' }"
+            [style]="{ width: '50vw' }"
+            [draggable]="false"
+            [resizable]="false"
+          >
+            <form [formGroup]="registerForm" (ngSubmit)="insPart()">
+              <div class="form-group">
+                <label for="nombre">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="nombre"
+                  id="nombre"
+                  placeholder="Ingrese su nombre"
+                />
+              </div>
+              <div class="form-group">
+                <label for="apellidoPaterno">Apellido Paterno</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="apP"
+                  id="apellidoPaterno"
+                  placeholder="Ingrese su apellido paterno"
+                />
+              </div>
+              <div class="form-group">
+                <label for="apellidoMaterno">Apellido Materno</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  formControlName="apM"
+                  id="apellidoMaterno"
+                  placeholder="Ingrese su apellido materno"
+                />
+              </div>
+              <!-- <div class="form-group">
+                <label for="edad">Edad</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="edad"
+                  placeholder="Ingrese su edad"
+                />
+              </div>
+              <div class="form-group">
+                <label for="genero">Género</label>
+                <select class="form-control" id="genero">
+                  <option value="">Selecciona tu género</option>
+                  <option value="masculino">Masculino</option>
+                  <option value="femenino">Femenino</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="correo">Correo</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="correo"
+                  placeholder="Ingrese su correo electrónico"
+                />
+              </div>
+              <div class="form-group">
+                <label for="telefono">Teléfono</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="telefono"
+                  placeholder="Ingrese su número de teléfono"
+                />
+              </div>
+              <div class="form-group">
+                <label for="cargo">Cargo</label>
+                <select class="form-control" id="cargo">
+                  <option value="">Selecciona tu cargo</option>
+                  <option value="Gerente">Gerente</option>
+                  <option value="Supervisor">Supervisor</option>
+                  <option value="Analista">Analista</option>
+                  <option value="Asistente">Asistente</option>
+                </select> 
+              </div>-->
+              <div
+                class="form-group mb-4 text-center"
+                style="padding: 15px 0; border-radius: 10px"
+              >
+                <!-- Añadí la clase "mb-4" para agregar un espacio adicional -->
+                <button type="submit" class="btn btn-primary btn-block">
+                  Registrar Evento
+                </button>
+              </div>
+            </form>
+          </p-dialog>
+  </table>
 </body>
