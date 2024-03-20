@@ -4,11 +4,16 @@ import { ParticipantesComponent } from './components/participantes/participantes
 import { EventosListComponent } from './components/eventos-list/eventos-list.component';
 import { TotalEventosComponent } from './components/total-eventos/total-eventos.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
+import { IniComponent } from './components/inicio/ini.component';
 
 const routes: Routes = [
   {
     path:'',
-    component:TotalEventosComponent
+    component:IniComponent
+  },
+  {
+    path:'participantes',
+    component:ParticipantesComponent
     
   },
   {
@@ -28,7 +33,11 @@ const routes: Routes = [
   {
     path:'calendario',
     component:CalendarioComponent
-  }
+  },
+  {
+    path:'home',
+    component:IniComponent
+  },
 ];
 
 @NgModule({

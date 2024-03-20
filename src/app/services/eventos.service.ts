@@ -6,15 +6,19 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EventosService {
-  URL_API='http://localhost:3000';
+  URL_API='http://localhost:3000/';
   public evento:Evento={nombreEvento:'',fecha:'',cupoMaximo:0,nomCiudad:'',nomArea:''}
 
   eventos:Evento[]=[];
+  eventosdia:Evento[]=[];
 
   constructor(private http: HttpClient) { }
 
   getEvents(){
     return this.http.get<Evento[]>(this.URL_API)
+  }
+  getByDate(fechaEvento:Date){
+    return this.http.get<Evento[]>(this.URL_API+'eventos/'+fechaEvento)
   }
 
   agEvento(evento:Evento){

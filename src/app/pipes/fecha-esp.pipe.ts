@@ -6,10 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FechaEspPipe implements PipeTransform {
 
   transform(value: string, mostrarDia: boolean = true): string {
-    const fecha = new Date(value);
-    const day = this.pad(fecha.getDate());
+    const fecha = new Date(Date.parse(value));
+    const day = this.pad(fecha.getUTCDate());
     const month = fecha.toLocaleDateString('es-ES', { month: 'long' });
-    const year = fecha.getFullYear();
+    const year = fecha.getUTCFullYear();
     
     if (mostrarDia) {
       return `${day}/${month}/${year}`;
@@ -23,3 +23,4 @@ export class FechaEspPipe implements PipeTransform {
     return num < 10 ? '0' + num : num.toString();
   }
 }
+

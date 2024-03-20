@@ -46,17 +46,17 @@
       </tr>
     </thead>
     <tbody>
-    <tr *ngFor="let participante of participantesService.participantesMasc" >
-      <td>
-        <tr >
-          <td>- {{ participante.nomComp }}</td>
-        </tr>
-      </td>
-          <td>
-            <tr *ngFor="let femenino of participantesService.participantesFem">
-              <td>- {{ femenino.nomComp }}</td>
-            </tr>
-          </td>
+      <tr>
+        <td>
+          <tr *ngFor="let hombre of participantesService.participantesMasc" >
+            <td>- {{ hombre.nomComp }}</td>
+          </tr>
+        </td>
+            <td>
+              <tr *ngFor="let femenino of participantesService.participantesFem">
+                <td>- {{ femenino.nomComp }}</td>
+              </tr>
+            </td>
       </tr>
     </tbody>
   </table>

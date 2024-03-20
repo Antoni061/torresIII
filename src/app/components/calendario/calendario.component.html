@@ -28,13 +28,14 @@
           </li>
         </ol>
       </div>
-      <p-card class="event-info" *ngIf="eventInfoVisible" >
-        <h3>{{ selectedEvent?.nomAct }}</h3>
-        <p>Encargado: {{selectedEvent?.usr}}</p>
-        <p>{{ selectedEvent?.descripcion }}</p>
-        <p>{{ selectedEvent?.nomLug }}</p>
+      <div class="event-info" *ngIf="eventInfoVisible" >
+        <p-card *ngFor="let Item of eventosService.eventosdia" [header]="Item.nombreEvento" [style]="{ width: '360px'}">
+          <p>Fecha: {{Item.fecha | fechaEsp}}</p>
+          <p>Ciudad: {{Item.nomCiudad}}</p>
+          <p>Cupo Disponible: {{Item.cupoMaximo}}</p>
+        </p-card>
         <p-button (click)="cerrarInfoEvent()">Cerrar</p-button>
-      </p-card>
+      </div>
     </div>
     
       <hr />

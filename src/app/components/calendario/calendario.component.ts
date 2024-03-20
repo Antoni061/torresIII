@@ -30,7 +30,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
 
 
 
-  constructor(private eventosService:EventosService) {}
+  constructor(public eventosService:EventosService) {}
 
   ngOnInit(): void {
     const fechaActual = new Date();
@@ -64,7 +64,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
 
   hoy(day: any): boolean {
     const hoy = new Date();
-    hoy.setDate(hoy.getDate());
+    hoy.setDate(hoy.getUTCDate());
     const diaStr = hoy.toISOString().slice(0, 10);
     const dia = `${diaStr}`;
     const monthYear = this.dateSelect.format('YYYY-MM');
@@ -86,7 +86,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
     const numberDays = Math.round(diffDays+1);
 
     const arrayDays = Object.keys([...Array(numberDays)]).map((a: any) => {
-      a = parseInt(a) + 1;
+      a = parseInt(a) + 2;
       const dayObject = moment(`${year}-${month}-${a +1}`);
       return {
         name: dayObject.format("dddd"),
@@ -109,19 +109,24 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
   }
 
   clickDay(day: { value: any }) {
+    
     const monthYear = this.dateSelect.format('YYYY-MM');
-    const parse = `${monthYear}-${day.value.toString().padStart(3, '0')}`;
-    const objectDate = moment(parse);
+    const parse = `${monthYear}-${day.value.toString().padStart(2, '0')}`;
+    const objectDate = moment.utc(parse);
     this.dateValue = objectDate;
-    console.log(parse);
+    console.log(this.dateSelect);
+    const fechaSelect= new Date(this.dateValue)
+    console.log(fechaSelect)
+    this.eventosService.getByDate(fechaSelect).subscribe(
+      eventosDia=>{
+        this.eventosService.eventosdia=eventosDia;
+      }
+    )
+    console.log(this.eventosService.eventosdia)
 
-    const eventosDia = this.eventosService.eventos.filter((evento) =>
-      moment(evento.fecha).isSame(objectDate, 'day')
-    );
-
-    if (eventosDia.length > 0) {
+    if (this.eventosService.eventosdia.length > 0) {
       this.eventInfoVisible = true;
-      this.selectedEvent = eventosDia;
+      this.selectedEvent = this.eventosService.eventosdia;
 
       
     } else {
