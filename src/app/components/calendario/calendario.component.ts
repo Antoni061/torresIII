@@ -58,9 +58,8 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
   hasEvent(day: any): boolean {
     const monthYear = this.dateSelect.format('YYYY-MM');
     const parse = `${monthYear}-${day?.value.toString().padStart(2, '0')}`;
-    console.log('fech '+this.eventosService.evento.fecha+' hid '+parse)
+    console.log('fech '+this.eventosService.eventos[0].fecha+' hid '+parse)
     return this.eventosService.eventos.some((evento) => evento.fecha.startsWith(parse));
-    
   }
 
   hoy(day: any): boolean {

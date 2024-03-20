@@ -1,14 +1,10 @@
-import { Evento } from './../../models/eventos';
 import { ParticipantesService } from './../../services/participantes.service';
 import { EventosService } from './../../services/eventos.service';
 import { Component, OnInit } from '@angular/core';
 
-import { DialogModule } from 'primeng/dialog';
-import { PrimeIcons, MenuItem } from 'primeng/api';
-import { FormBuilder, NgForm, Validators } from '@angular/forms';
+import { MenuItem } from 'primeng/api';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Participante } from '../../models/participante';
-import { response } from 'express';
-import { error } from 'console';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 

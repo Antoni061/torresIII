@@ -75,19 +75,19 @@
     </tbody>
   </table>
 
-  <div *ngIf="statsService.statsData">
+  <p-card *ngIf="statsService.statsData" class="statCard primary-200">
     <h3>Estadísticas del Evento:</h3>
   
     <p>Porcentaje Global de Asistencia: {{ statsService.statsData.globalAttendance[0].globalAttendance }}%</p>
   
     <p>Porcentaje Por Evento: {{ statsService.statsData.participationByEvent[0].porcentajeParticipacion }}%</p>
   
-    <p>Porcentaje de Mujeres y Hombres:</p>
+    <p>Porcentaje por Genro Mujeres(F) y Hombres(M):</p>
     <ul>
       <li *ngFor="let genero of statsService.statsData.participacionPorGenero">
         {{ genero.genero }}: {{ genero.porcentaje }}%
       </li>
     </ul>
-  </div>
+  </p-card>
   
 </body>
