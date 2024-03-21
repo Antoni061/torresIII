@@ -58,13 +58,12 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
   hasEvent(day: any): boolean {
     const monthYear = this.dateSelect.format('YYYY-MM');
     const parse = `${monthYear}-${day?.value.toString().padStart(2, '0')}`;
-    console.log('fech '+this.eventosService.eventos[0].fecha+' hid '+parse)
     return this.eventosService.eventos.some((evento) => evento.fecha.startsWith(parse));
   }
 
   hoy(day: any): boolean {
     const hoy = new Date();
-    hoy.setDate(hoy.getUTCDate());
+    hoy.setDate(hoy.getDate());
     const diaStr = hoy.toISOString().slice(0, 10);
     const dia = `${diaStr}`;
     const monthYear = this.dateSelect.format('YYYY-MM');
@@ -86,7 +85,7 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
     const numberDays = Math.round(diffDays+1);
 
     const arrayDays = Object.keys([...Array(numberDays)]).map((a: any) => {
-      a = parseInt(a) + 2;
+      a = parseInt(a) + 1;
       const dayObject = moment(`${year}-${month}-${a +1}`);
       return {
         name: dayObject.format("dddd"),
@@ -109,29 +108,24 @@ export class CalendarioComponent implements OnInit, AfterViewInit {
   }
 
   clickDay(day: { value: any }) {
-    
     const monthYear = this.dateSelect.format('YYYY-MM');
     const parse = `${monthYear}-${day.value.toString().padStart(2, '0')}`;
     const objectDate = moment.utc(parse);
     this.dateValue = objectDate;
     console.log(this.dateSelect);
     const fechaSelect= new Date(this.dateValue)
-    console.log(fechaSelect)
+
     this.eventosService.getByDate(fechaSelect).subscribe(
       eventosDia=>{
         this.eventosService.eventosdia=eventosDia;
+        console.log(this.eventosService.eventosdia)
+        if (this.eventosService.eventosdia.length > 0) {
+          this.eventInfoVisible = true
+        } else {
+          this.eventInfoVisible = false
+        }
       }
     )
-    console.log(this.eventosService.eventosdia)
-
-    if (this.eventosService.eventosdia.length > 0) {
-      this.eventInfoVisible = true;
-      this.selectedEvent = this.eventosService.eventosdia;
-
-      
-    } else {
-      this.eventInfoVisible = false;
-    }
 
     console.log(day);
   }

@@ -8,7 +8,8 @@ export class FechaEspPipe implements PipeTransform {
   transform(value: string, mostrarDia: boolean = true): string {
     const fecha = new Date(Date.parse(value));
     const day = this.pad(fecha.getUTCDate());
-    const month = fecha.toLocaleDateString('es-ES', { month: 'long' });
+    let month = fecha.toLocaleDateString('es-ES', { month: 'long' });
+    month = month.charAt(0).toUpperCase() + month.slice(1);
     const year = fecha.getUTCFullYear();
     
     if (mostrarDia) {
