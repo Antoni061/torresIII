@@ -5,7 +5,7 @@ import { EventosListComponent } from './components/eventos-list/eventos-list.com
 import { TotalEventosComponent } from './components/total-eventos/total-eventos.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { IniComponent } from './components/inicio/ini.component';
-import { RegisPersonaListComponent } from './components/RegisPersona/RegisPersona.component';
+import { RegisPersonaComponent } from './components/RegisPersona/RegisPersona.component';
 
 const routes: Routes = [
   {
@@ -41,7 +41,7 @@ const routes: Routes = [
   },
   {
     path:'regisPersona',
-    component:RegisPersonaListComponent
+    component:RegisPersonaComponent
   }
 ];
 

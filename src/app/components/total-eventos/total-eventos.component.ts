@@ -73,6 +73,9 @@ export class TotalEventosComponent implements OnInit{
           severity: 'success', 
           summary: 'Registro Exitosos', 
           detail: message });
+          this.registerForm.reset();
+          this.visible=false
+          this.getEvents();
       },
       (error: any) => {
         let errorMessage = 'Hubo un error en el registro';

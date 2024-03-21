@@ -24,20 +24,23 @@
           <p-button
             (click)="showDialog(item.nombreEvento);"
             icon="pi pi-user"
-            label="Inscribirme a un evento"
+            label="Inscribirme"
           ></p-button>
         </td>
       </tr>
       <!-- Puedes agregar más filas según sea necesario -->
     </tbody>
     <p-dialog
-            header="Evento"
             [(visible)]="visible"
             [breakpoints]="{ '960px': '75vw' }"
             [style]="{ width: '50vw' }"
             [draggable]="false"
             [resizable]="false"
           >
+        <ng-template pTemplate="header">
+            <h3>{{ evento }}</h3>
+        </ng-template>
+    
             <form [formGroup]="registerForm" (ngSubmit)="insPart()">
               <div class="form-group">
                 <label for="nombre">Nombre</label>

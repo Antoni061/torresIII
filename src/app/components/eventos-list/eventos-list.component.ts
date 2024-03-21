@@ -82,6 +82,7 @@ export class EventosListComponent implements OnInit {
         severity: 'success', 
         summary: 'Registro Exitosos', 
         detail: message });
+        this.eventForm.reset();
       },
       (error:any)=>{
         let errorMessage = 'Hubo un error en el registro';

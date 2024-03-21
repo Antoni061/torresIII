@@ -15,6 +15,7 @@ import { TotalEventosComponent } from './components/total-eventos/total-eventos.
 import { FechaEspPipe } from './pipes/fecha-esp.pipe';
 import { FormsModule } from '@angular/forms';
 import { CalendarioComponent } from './components/calendario/calendario.component';
+import { RegisPersonaComponent } from './components/RegisPersona/RegisPersona.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CalendarioComponent } from './components/calendario/calendario.componen
     EventosListComponent,
     TotalEventosComponent,
     FechaEspPipe,
-    CalendarioComponent
+    CalendarioComponent,
+    RegisPersonaComponent
   ],
   imports: [
     BrowserModule,

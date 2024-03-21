@@ -3,48 +3,59 @@
         <div class="row justify-content-center" style="background: #373f51; color: white; padding: 10px; border-radius: 10px 10px 10px 10px;">
             <div class="col-md-12">
                 <h2 class="mb-4 text-center" style="background: #373f51; color: white; padding: 10px; border-radius: 10px 10px 0 0;">Registro de Eventos</h2>
-                <form>
+                <form [formGroup]="personaForm" (submit)="aggPersona()">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Ingrese su nombre">
+                        <input type="text" class="form-control" formControlName="nombre" placeholder="Ingrese su nombre">
                     </div>
                     <div class="form-group">
-                        <label for="apellidoPaterno">Apellido Paterno</label>
-                        <input type="text" class="form-control" id="apellidoPaterno" placeholder="Ingrese su apellido paterno">
+                        <label for="apellidoPaterno" >Apellido Paterno</label>
+                        <input type="text" class="form-control" formControlName="apP" placeholder="Ingrese su apellido paterno">
                     </div>
                     <div class="form-group">
                         <label for="apellidoMaterno">Apellido Materno</label>
-                        <input type="text" class="form-control" id="apellidoMaterno" placeholder="Ingrese su apellido materno">
+                        <input type="text" class="form-control" formControlName="apM" placeholder="Ingrese su apellido materno">
                     </div>
                     <div class="form-group">
                         <label for="edad">Edad</label>
-                        <input type="number" class="form-control" id="edad" placeholder="Ingrese su edad">
+                        <input type="number" class="form-control" formControlName="edad" placeholder="Ingrese su edad">
                     </div>
                     <div class="form-group">
                         <label for="genero">Género</label>
-                        <select class="form-control" id="genero">
+                        <select class="form-control" formControlName="genero">
                             <option value="">Selecciona tu género</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="femenino">Femenino</option>
-                            <option value="otro">Otro</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Femenino</option>
+                            <option value="O">Otro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="nomArea">Area Interes</label>
+                        <select class="form-control" name="nomArea" formControlName="nomArea">
+                            <option value="">Seleccionar Area</option>
+                            <option *ngFor="let area of areaInteresService.areaInteres" [value]="area.nomArea"> {{area.nomArea}} </option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="correo">Correo</label>
-                        <input type="email" class="form-control" id="correo" placeholder="Ingrese su correo electrónico">
+                        <input type="email" class="form-control" formControlName="correo" placeholder="Ingrese su correo electrónico">
                     </div>
                     <div class="form-group">
                         <label for="telefono">Teléfono</label>
-                        <input type="tel" class="form-control" id="telefono" placeholder="Ingrese su número de teléfono">
+                        <input type="tel" class="form-control" formControlName="telefono" placeholder="Ingrese su número de teléfono">
                     </div>
                     <div class="form-group">
                         <label for="cargo">Cargo</label>
-                        <select class="form-control" id="cargo">
+                        <select class="form-control" formControlName="nomCargo">
                             <option value="">Selecciona tu cargo</option>
-                            <option value="Gerente">Gerente</option>
-                            <option value="Supervisor">Supervisor</option>
-                            <option value="Analista">Analista</option>
-                            <option value="Asistente">Asistente</option>
+                            <option *ngFor="let cargo of cargoService.cargos" [value]="cargo.nomCargo">{{cargo.nomCargo}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="ciudad">Ciudad</label>
+                        <select class="form-control" formControlName="ciudad">
+                            <option value="" >Selecciona tu Ciudad</option>
+                            <option *ngFor="let ciudad of ciudadService.ciudades" [value]="ciudad.nomCiudad">{{ciudad.nomCiudad}}</option>
                         </select>
                     </div>
                     <div class="form-group mb-4 text-center" style="padding: 15px 0; border-radius: 10px;"> <!-- Añadí la clase "mb-4" para agregar un espacio adicional -->
